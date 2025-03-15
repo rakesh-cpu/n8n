@@ -8,14 +8,17 @@ ENV N8N_BASIC_AUTH_PASSWORD=Fracspace@2024
 ENV WEBHOOK_TUNNEL_URL=https://your-app-name.up.railway.app/
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-# Fix permissions issue
+# Set correct permissions for n8n settings
 RUN mkdir -p /home/node/.n8n && chmod 700 /home/node/.n8n
 
-# Fix PATH issue - Ensures n8n runs
-RUN ln -s /usr/local/bin/n8n /usr/bin/n8n
+# Fix possible PATH issue - Ensure n8n is accessible
+RUN ln -sf /usr/local/bin/n8n /usr/bin/n8n
 
-# Expose port 5678
+# Set work directory
+WORKDIR /home/node
+
+# Expose n8n default port
 EXPOSE 5678
 
 # Start n8n
-CMD ["n8n"]
+CMD ["node", "/usr/local/lib/node_modules/n8n/bin/n8n"]
