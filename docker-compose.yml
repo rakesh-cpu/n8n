@@ -10,7 +10,8 @@ services:
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=Fracspace@2024
-      - WEBHOOK_TUNNEL_URL=http://localhost:5678/
+      - WEBHOOK_TUNNEL_URL=https://your-app-name.up.railway.app/
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true 
     volumes:
       - /home/administrator/.n8n:/home/node/.n8n
-
+    entrypoint: ["/bin/sh", "-c", "chmod 700 /home/node/.n8n/config && n8n"]
