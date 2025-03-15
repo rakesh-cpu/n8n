@@ -5,7 +5,7 @@ FROM n8nio/n8n:latest
 ENV N8N_BASIC_AUTH_ACTIVE=true
 ENV N8N_BASIC_AUTH_USER=admin
 ENV N8N_BASIC_AUTH_PASSWORD=Fracspace@2024
-ENV WEBHOOK_TUNNEL_URL=https://your-app-name.up.railway.app/
+ENV WEBHOOK_TUNNEL_URL=${host}
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
 # Set correct permissions for n8n settings
